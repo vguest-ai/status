@@ -1,31 +1,38 @@
-# Change these first
-owner: upptime # Your GitHub organization or username, where this repository lives
-repo: upptime # The name of this repository
+# vGuest public status page - https://github.com/vguest-ai/status
+owner: vguest-ai
+repo: status
 
 sites:
-  - name: Google
-    url: https://www.google.com
-  - name: Wikipedia
-    url: https://en.wikipedia.org
-  - name: Hacker News
-    url: https://news.ycombinator.com
-  - name: Secret Site
-    url: $SECRET_SITE
+  - name: Website
+    url: https://vguest.ai
+  - name: API
+    url: https://api.vguest.ai/health
+  - name: Staff dashboard
+    url: https://dashboard.vguest.ai
+    expectedStatusCodes: [200, 301, 302, 307, 308]
+  - name: Guest app
+    url: https://my.vguest.ai
+    expectedStatusCodes: [200, 301, 302, 307, 308]
 
 status-website:
-  # Add your custom domain name, or remove the `cname` line if you don't have a domain
-  # Uncomment the `baseUrl` line if you don't have a custom domain and add your repo name there
-  cname: demo.upptime.js.org
-  # baseUrl: /your-repo-name
-  logoUrl: https://raw.githubusercontent.com/upptime/upptime.js.org/master/static/img/icon.svg
-  name: Upptime
-  introTitle: "**Upptime** is the open-source uptime monitor and status page, powered entirely by GitHub."
-  introMessage: This is a sample status page which uses **real-time** data from our [GitHub repository](https://github.com/upptime/upptime). No server required — just GitHub Actions, Issues, and Pages. [**Get your own for free**](https://github.com/upptime/upptime)
+  # Switch to `cname: status.vguest.ai` once the Cloudflare CNAME points at vguest-ai.github.io
+  baseUrl: /status
+  logoUrl: https://vguest.ai/favicon.ico
+  name: vGuest Status
+  introTitle: "**vGuest** service status"
+  introMessage: Live availability and response time of the vGuest guest-messaging platform, checked every 5 minutes. Incidents are posted here as they happen.
   navbar:
     - title: Status
       href: /
-    - title: GitHub
-      href: https://github.com/$OWNER/$REPO
+    - title: vguest.ai
+      href: https://vguest.ai
 
-# Upptime also supports notifications, assigning issues, and more
-# See https://upptime.js.org/docs/configuration
+# Checks run every 5 minutes; incidents open a GitHub issue automatically.
+workflowSchedule:
+  uptime: "*/5 * * * *"
+  responseTime: "0 23 * * *"
+  staticSite: "0 1 * * *"
+  summary: "0 0 * * *"
+  updateTemplate: "0 0 * * *"
+  updates: "0 3 * * *"
+  graphs: "0 0 * * *"
